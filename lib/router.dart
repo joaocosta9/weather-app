@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/screens/city_info_screen/city_info_screen.dart';
+import 'package:weather_app/screens/weather_info_screen/weather_info_screen.dart';
 import 'package:weather_app/screens/home_screen/home_screen.dart';
 
 class RouteGenerator {
@@ -11,7 +11,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case RoutePaths.cityInfo:
         return MaterialPageRoute(
-            builder: (_) => CityInfoScreen(cityName: getArgument("cityName")));
+            builder: (_) => CityInfoScreen(
+                  cityName: getArgument(CityInfoScreen.cityNameKey),
+                  isCurrentLocation:
+                      getArgument(CityInfoScreen.isCurrentLocationKey),
+                ));
       default:
         return _errorRoute();
     }

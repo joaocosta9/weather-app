@@ -8,12 +8,11 @@ class WeatherService {
 
   Future<Weather> getWeatherData(Coord coord) async {
     try {
-      double? lat = coord.lat;
-      double? lon = coord.lon;
+      String lat = coord.lat;
+      String lon = coord.lon;
       Response response = await service.dio.request(
-          "/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey",
+          "/data/2.5/weather?lat=$lat&lon=$lon&units=metric&appid=$apiKey",
           options: Options(method: "get"));
-
       return Weather.fromMap(response.data);
     } on DioError {
       throw Exception("Error");
